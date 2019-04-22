@@ -1,0 +1,2 @@
+include ':app', ':documentscanner'
+include ':openCVLibrary340'
