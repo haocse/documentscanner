@@ -145,7 +145,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         mImageSurfaceView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                Toast.makeText(getApplicationContext(), "mImageSurfaceView", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "mImageSurfaceView", Toast.LENGTH_LONG).show();
                 return false;
             }
         });
@@ -153,7 +153,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         cameraPreviewLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                Toast.makeText(getApplicationContext(), "cameraPrevieLayout", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "cameraPrevieLayout", Toast.LENGTH_LONG).show();
                 return mImageSurfaceView.cameraFocus(motionEvent);
 //                return true;
 
