@@ -1,5 +1,6 @@
 package com.haotran.documentscanner.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.haotran.documentscanner.constants.ScanConstants;
@@ -63,6 +65,7 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
     private Camera.Size previewSize;
     private boolean isCapturing = false;
 
+    @SuppressLint("ClickableViewAccessibility")
     public ScanSurfaceView(Context context, IScanner iScanner) {
         super(context);
         mSurfaceView = new SurfaceView(context);
@@ -73,6 +76,14 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         SurfaceHolder surfaceHolder = mSurfaceView.getHolder();
         surfaceHolder.addCallback(this);
         this.iScanner = iScanner;
+
+        mSurfaceView.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                cameraFocus(motionEvent);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -259,7 +270,7 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
 
 //                    Imgcodecs.imwrite("Gaussian45.jpg", destination);
 
-                    SaveImage(mat);
+//                    SaveImage(mat);
 
                     yuv.release();
 
@@ -441,6 +452,7 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         autoCaptureTimer.start();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void autoCapture(ScanHint scanHint) {
         if (isCapturing) return;
         if (ScanHint.CAPTURING_IMAGE.equals(scanHint)) {
@@ -450,8 +462,16 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
 
                 camera.takePicture(mShutterCallBack, null, pictureCallback);
                 camera.setPreviewCallback(null);
+
 //                iScanner.displayHint(ScanHint.NO_MESSAGE);
 //                clearAndInvalidateCanvas();
+                mSurfaceView.setOnTouchListener(new OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        //do nothing...
+                        return true;
+                    }
+                });
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -625,7 +645,7 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
             Rect focusRect = calculateTapArea(event.getX(), event.getY(), 1f);
 
             Camera.Parameters parameters = camera.getParameters();
-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_MACRO);
+            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
 
             if (parameters.getMaxNumFocusAreas() > 0) {
                 List<Camera.Area> mylist = new ArrayList<Camera.Area>();

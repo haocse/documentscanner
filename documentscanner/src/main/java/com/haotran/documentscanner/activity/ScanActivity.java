@@ -142,23 +142,24 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         mImageSurfaceView = new ScanSurfaceView(ScanActivity.this, ScanActivity.this);
         cameraPreviewLayout.addView(mImageSurfaceView);
 
-        mImageSurfaceView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                Toast.makeText(getApplicationContext(), "mImageSurfaceView", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });
-
-        cameraPreviewLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                Toast.makeText(getApplicationContext(), "cameraPrevieLayout", Toast.LENGTH_LONG).show();
-                return mImageSurfaceView.cameraFocus(motionEvent);
-//                return true;
-
-            }
-        });
+//        mImageSurfaceView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+////                Toast.makeText(getApplicationContext(), "mImageSurfaceView", Toast.LENGTH_LONG).show();
+//                return false;
+//            }
+//        });
+//
+//        cameraPreviewLayout.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+////                Toast.makeText(getApplicationContext(), "cameraPrevieLayout", Toast.LENGTH_LONG).show();
+//
+//                return mImageSurfaceView.cameraFocus(motionEvent);
+////                return true;
+//
+//            }
+//        });
     }
 
     @Override
