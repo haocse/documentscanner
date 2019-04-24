@@ -355,7 +355,9 @@ public class ScanUtils {
         Imgproc.cvtColor(inputMat, grayImage, Imgproc.COLOR_RGBA2GRAY);
         Imgproc.GaussianBlur(grayImage, grayImage, new Size(5.0, 5.0), 0.0);
         Imgproc.threshold(grayImage, grayImage, 20.0, 255.0, Imgproc.THRESH_TRIANGLE);
+
         Imgproc.Canny(grayImage, cannedImage, 75.0, 200.0);
+
         Imgproc.dilate(cannedImage, dilate, kernel);
 
 //        Mat hierarchy = new Mat();
