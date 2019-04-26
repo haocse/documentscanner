@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/documentscanner/documentscanner-documentscanner.iml" filepath="$PROJECT_DIR$/documentscanner/documentscanner-documentscanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/openCVLibrary340/openCVLibrary340.iml" filepath="$PROJECT_DIR$/openCVLibrary340/openCVLibrary340.iml" />
+      <module fileurl="file://$PROJECT_DIR$/opencv3_4_1/opencv3_4_1.iml" filepath="$PROJECT_DIR$/opencv3_4_1/opencv3_4_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/opencv3_4_4_contrib/opencv3_4_4_contrib.iml" filepath="$PROJECT_DIR$/opencv3_4_4_contrib/opencv3_4_4_contrib.iml" />
     </modules>
   </component>
 </project>
