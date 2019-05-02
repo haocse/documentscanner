@@ -80,7 +80,11 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         mSurfaceView.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                cameraFocus(motionEvent);
+                try {
+                    cameraFocus(motionEvent);
+                } catch (Exception e) {
+                    Log.e(">>>", e.getMessage());
+                }
                 return true;
             }
         });
