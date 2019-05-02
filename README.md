@@ -13,4 +13,5 @@ Top-level gradle:
 Then add this line to project gradle:
   <code>implementation 'com.github.haocse.documentscanner:documentscanner:1.0.2'</code>
 
-Reference: https://blogs.dropbox.com/tech/2016/08/fast-and-accurate-document-detection-for-scanning/
+# Reference
+    https://blogs.dropbox.com/tech/2016/08/fast-and-accurate-document-detection-for-scanning/
