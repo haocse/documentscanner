@@ -456,7 +456,7 @@ public class ScanUtils {
         return mReturnParams;
     }
 
-    private static File getBaseDirectoryFromPathString(String mPath, Context mContext) {
+    public static File getBaseDirectoryFromPathString(String mPath, Context mContext) {
 
         ContextWrapper mContextWrapper = new ContextWrapper(mContext);
 

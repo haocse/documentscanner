@@ -14,6 +14,8 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -47,7 +49,11 @@ import org.opencv.core.Point;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -78,6 +84,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
     private Bitmap copyBitmap;
     private FrameLayout cropLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +92,10 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         init();
+
+        // create a timestamp here.
+//        to track group of images.
+
     }
 
     private void init() {
@@ -293,7 +304,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
 //                cropLayout.setVisibility(View.VISIBLE);
                 // Go to next screen
 
-                doneForCapturing();
+//                doneForCapturing();
 
                 cropImageView.setImageBitmap(copyBitmap);
                 cropImageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -303,6 +314,16 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         } catch (Exception e) {
             Log.e(TAG, e.getMessage(), e);
         }
+    }
+
+    @Override
+    public void onNope(long name) {
+        raw(name);
+    }
+
+    @Override
+    public void onYep(long name) {
+        saveForTheNextCapture(name);
     }
 
     private synchronized void showProgressDialog(String message) {
@@ -329,7 +350,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         doneForCapturing();
     }
 
-    private void doneForCapturing() {
+    public void saveForTheNextCapture(long name) {
         Map<Integer, PointF> points = polygonView.getPoints();
 
         Bitmap croppedBitmap;
@@ -344,9 +365,70 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
             croppedBitmap = copyBitmap;
         }
 
-        String path = ScanUtils.saveToInternalMemory(croppedBitmap, ScanConstants.IMAGE_DIR,
-                ScanConstants.IMAGE_NAME, ScanActivity.this, 90)[0];
-        setResult(Activity.RESULT_OK, new Intent().putExtra(ScanConstants.SCANNED_RESULT, path));
+        String fileName = name + "_" + System.currentTimeMillis() + ".png";
+        String path = ScanUtils.saveToInternalMemory(croppedBitmap, ScanConstants.RAW_IMAGE_DIR, fileName, ScanActivity.this, 90)[0];
+
+        RoundedBitmapDrawable dr = RoundedBitmapDrawableFactory.create(getResources(), croppedBitmap);
+        dr.setCornerRadius(10);
+        ((ImageView)findViewById(R.id.bunch)).setImageDrawable(dr);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+            TransitionManager.beginDelayedTransition(containerScan);
+        cropLayout.setVisibility(View.GONE);
+        mImageSurfaceView.setPreviewCallback();
+
+
+//        ArrayList<String> al = new ArrayList<String>();
+//        al.add(fileName);
+    }
+
+    public void raw(long name) {
+        Map<Integer, PointF> points = polygonView.getPoints();
+        Bitmap croppedBitmap;
+
+        if (ScanUtils.isScanPointsValid(points)) {
+            Point point1 = new Point(points.get(0).x, points.get(0).y);
+            Point point2 = new Point(points.get(1).x, points.get(1).y);
+            Point point3 = new Point(points.get(2).x, points.get(2).y);
+            Point point4 = new Point(points.get(3).x, points.get(3).y);
+            croppedBitmap = ScanUtils.enhanceReceipt(copyBitmap, point1, point2, point3, point4);
+        } else {
+            croppedBitmap = copyBitmap;
+        }
+
+        String fileName = name + "_" + System.currentTimeMillis() + ".png";
+        String path = ScanUtils.saveToInternalMemory(croppedBitmap, ScanConstants.RAW_IMAGE_DIR, fileName, ScanActivity.this, 90)[0];
+
+
+
+        ArrayList<String> al = new ArrayList<String>();
+        al.add(fileName);
+
+        setResult(Activity.RESULT_OK, new Intent().putStringArrayListExtra(ScanConstants.SCANNED_RESULT, al)); // path should be paths instead...
+
+        //bitmap.recycle();
+        System.gc();
+        finish();
+    }
+
+    public void doneForCapturing() {
+        Map<Integer, PointF> points = polygonView.getPoints();
+
+        Bitmap croppedBitmap;
+
+        if (ScanUtils.isScanPointsValid(points)) {
+            Point point1 = new Point(points.get(0).x, points.get(0).y);
+            Point point2 = new Point(points.get(1).x, points.get(1).y);
+            Point point3 = new Point(points.get(2).x, points.get(2).y);
+            Point point4 = new Point(points.get(3).x, points.get(3).y);
+            croppedBitmap = ScanUtils.enhanceReceipt(copyBitmap, point1, point2, point3, point4);
+        } else {
+            croppedBitmap = copyBitmap;
+        }
+
+        String path = ScanUtils.saveToInternalMemory(croppedBitmap, ScanConstants.IMAGE_DIR, ScanConstants.IMAGE_NAME, ScanActivity.this, 90)[0];
+
+        setResult(Activity.RESULT_OK, new Intent().putExtra(ScanConstants.SCANNED_RESULT, path)); // path should be paths instead...
+
         //bitmap.recycle();
         System.gc();
         finish();

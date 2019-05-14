@@ -3,6 +3,7 @@ package com.haotran.documentscanner.view;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.ImageFormat;
@@ -16,6 +17,7 @@ import android.hardware.Camera;
 import android.media.AudioManager;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -23,6 +25,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.haotran.documentscanner.activity.ScanActivity;
 import com.haotran.documentscanner.constants.ScanConstants;
 import com.haotran.documentscanner.enums.ScanHint;
 import com.haotran.documentscanner.interfaces.IScanner;
@@ -64,10 +67,12 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
     private boolean isAutoCaptureScheduled;
     private Camera.Size previewSize;
     private boolean isCapturing = false;
+    private long imageName;
 
     @SuppressLint("ClickableViewAccessibility")
     public ScanSurfaceView(Context context, IScanner iScanner) {
         super(context);
+        imageName = System.currentTimeMillis();
         mSurfaceView = new SurfaceView(context);
         addView(mSurfaceView);
         this.context = context;
@@ -566,7 +571,31 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
                 public void run() {
                     isCapturing = false;
                 }
-            }, 3000);
+            }, 1000);
+
+            new AlertDialog.Builder(context)
+                    .setTitle("Add next page")
+                    .setMessage("Do you want to add next page?")
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // save list of file...
+                            // save to ...
+                            iScanner.onYep(imageName);
+                        }
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            iScanner.onNope(imageName);
+                        }
+                    })
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
 
         }
     };

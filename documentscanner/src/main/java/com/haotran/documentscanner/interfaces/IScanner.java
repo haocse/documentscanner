@@ -11,4 +11,6 @@ import com.haotran.documentscanner.enums.ScanHint;
 public interface IScanner {
     void displayHint(ScanHint scanHint);
     void onPictureClicked(Bitmap bitmap);
+    void onNope(long name);
+    void onYep(long name);
 }
