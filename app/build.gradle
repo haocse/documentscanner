@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
@@ -37,8 +37,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+//    implementation project(':documentscanner-release')
+//    implementation(name:'documentscanner-release', ext:'aar')
+//    implementation(name:'com.haotran.documentscanner', ext:'aar')
     implementation project(':documentscanner')
-//    implementation 'com.github.haocse.documentscanner:documentscanner:1.0.1'
+//    implementation 'com.haotran.documentscanner:latest@aar'
 
 //    implementation 'com.github.HaoCSE:documentscanner:1.0.1'
 
