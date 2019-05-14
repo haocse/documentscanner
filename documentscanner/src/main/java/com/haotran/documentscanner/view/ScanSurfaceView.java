@@ -431,7 +431,9 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         invalidateCanvas();
     }
 
-    private void scheduleAutoCapture(final ScanHint scanHint) {
+
+
+    public void scheduleAutoCapture(final ScanHint scanHint) {
         isAutoCaptureScheduled = true;
         secondsLeft = 0;
         autoCaptureTimer = new CountDownTimer(4000, 100) {
@@ -479,6 +481,29 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void capture() {
+        if (isCapturing) return;
+        try {
+            isCapturing = true;
+//            iScanner.displayHint(ScanHint.CAPTURING_IMAGE);
+
+            camera.takePicture(mShutterCallBack, null, pictureCallback);
+            camera.setPreviewCallback(null);
+
+//                iScanner.displayHint(ScanHint.NO_MESSAGE);
+//                clearAndInvalidateCanvas();
+            mSurfaceView.setOnTouchListener(new OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    //do nothing...
+                    return true;
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -65,17 +66,26 @@ public class MainActivity extends AppCompatActivity {
                     ByteArrayOutputStream imageByteArray = new ByteArrayOutputStream();
                     baseBitmap.compress(Bitmap.CompressFormat.JPEG, 100, imageByteArray);
                     byte[] imageData = imageByteArray.toByteArray();
-                    setDpi(imageData, 300);
 
+                    setDpi(imageData, 300);
                     File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                    String filename = "300dpi.png";
+
+                    String filename = System.currentTimeMillis() + ".png";
+
+//                    String filename = "300dpi.png";
                     try {
-                        File file = new File(path, filename);
+                        File file = new File(getBaseContext().getFilesDir(), filename);
                         FileOutputStream fileOutputStream = new FileOutputStream(file);
                         fileOutputStream.write(imageData);
                         fileOutputStream.close();
                     } catch (Exception e) {
                         Log.e(">>>", e.getMessage());
+                    }
+
+                    String[] list = getBaseContext().getFilesDir().list();
+                    Log.d(">>>", list.length + "");
+                    for (int i = 0; i < list.length; i++) {
+                        Log.d(">>>", list[i]);
                     }
                 }
             } else if(resultCode == Activity.RESULT_CANCELED) {

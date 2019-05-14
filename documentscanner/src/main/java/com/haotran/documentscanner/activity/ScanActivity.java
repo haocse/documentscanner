@@ -113,6 +113,16 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
             finish();
         }
         checkCameraPermissions();
+
+        findViewById(R.id.capture).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(ScanActivity.this, "Hey...", Toast.LENGTH_SHORT).show();
+                // Capture image here.
+                mImageSurfaceView.capture();
+
+            }
+        });
     }
 
     private void checkCameraPermissions() {
@@ -202,6 +212,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
             case MOVE_CLOSER:
                 captureHintText.setText(getResources().getString(R.string.move_closer));
                 captureHintLayout.setBackground(getResources().getDrawable(R.drawable.hint_red));
+                captureHintLayout.setVisibility(GONE);
                 break;
             case MOVE_AWAY:
 //                captureHintText.setText(getResources().getString(R.string.move_away));
@@ -214,11 +225,13 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
                 break;
             case FIND_RECT:
                 captureHintText.setText(getResources().getString(R.string.finding_rect));
-                captureHintLayout.setBackground(getResources().getDrawable(R.drawable.hint_white));
+//                captureHintLayout.setBackground(getResources().getDrawable(R.drawable.hint_white));
+                captureHintLayout.setVisibility(GONE);
                 break;
             case CAPTURING_IMAGE:
                 captureHintText.setText(getResources().getString(R.string.hold_still));
                 captureHintLayout.setBackground(getResources().getDrawable(R.drawable.hint_green));
+                captureHintLayout.setVisibility(GONE);
                 break;
             case NO_MESSAGE:
                 captureHintLayout.setVisibility(GONE);
@@ -276,7 +289,11 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
                 polygonView.setLayoutParams(layoutParams);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
                     TransitionManager.beginDelayedTransition(containerScan);
-                cropLayout.setVisibility(View.VISIBLE);
+
+//                cropLayout.setVisibility(View.VISIBLE);
+                // Go to next screen
+
+                doneForCapturing();
 
                 cropImageView.setImageBitmap(copyBitmap);
                 cropImageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -309,6 +326,10 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
 
     @Override
     public void onClick(View view) {
+        doneForCapturing();
+    }
+
+    private void doneForCapturing() {
         Map<Integer, PointF> points = polygonView.getPoints();
 
         Bitmap croppedBitmap;
