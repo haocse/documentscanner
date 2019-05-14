@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.haotran.documentscanner.R;
+import com.haotran.documentscanner.activity.CaptureActivity;
 import com.haotran.documentscanner.activity.ScanActivity;
 import com.haotran.documentscanner.constants.ScanConstants;
 import com.haotran.documentscanner.util.ScanUtils;
@@ -34,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         scannedImageView = findViewById(R.id.scanned_image);
 
-        startScan();
+//        startScan();
+        startCapture();
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startCapture() {
-        Intent intent = new Intent(this, ScanActivity.class);
+        Intent intent = new Intent(this, CaptureActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
     }
 
