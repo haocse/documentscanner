@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         scannedImageView = findViewById(R.id.scanned_image);
 
 //        startScan();
@@ -90,12 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                     File mPath = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getBaseContext());
 
-                    File[] list = mPath.listFiles(new FileFilter() {
-                        @Override
-                        public boolean accept(File file) {
-                            return file.getName().endsWith(".png");
-                        }
-                    });
+                    File[] list = mPath.listFiles(file -> file.getName().endsWith(".png"));
 
                     Log.d(">>>", list.length + "");
                     for (int i = 0; i < list.length; i++) {
