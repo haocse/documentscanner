@@ -84,6 +84,10 @@ public class CaptureActivity extends AppCompatActivity {
 //        this.adapter.addFragment(new CaptureResultFragment(), "Grid");
 //        this.adapter.addFragment(new CaptureResultFragment(), "By Day");
         viewPager.setAdapter(this.adapter);
+
+//        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+//            tabLayout.getTabAt(i).setCustomView(R.layout.custom_tab);
+//        }
     }
 
 

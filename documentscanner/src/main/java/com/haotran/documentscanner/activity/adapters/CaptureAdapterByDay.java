@@ -14,23 +14,23 @@ public class CaptureAdapterByDay extends BaseCaptureAdapter {
 
     @Override
     public boolean onPlaceSubheaderBetweenItems(int position) {
-        final String movieGenre = movieList.get(position).getDay();
-        final String nextMovieGenre = movieList.get(position + 1).getDay();
+        final String capture = captureList.get(position).getDay();
+        final String nextCapture = captureList.get(position + 1).getDay();
 
-        return !movieGenre.equals(nextMovieGenre);
+        return !capture.equals(nextCapture);
 
-//        final char movieTitleFirstCharacter = movieList.get(position).getTitle().charAt(0);
-//        final char nextMovieTitleFirstCharacter = movieList.get(position + 1).getTitle().charAt(0);
+//        final char movieTitleFirstCharacter = captureList.get(position).getTitle().charAt(0);
+//        final char nextMovieTitleFirstCharacter = captureList.get(position + 1).getTitle().charAt(0);
 //        return movieTitleFirstCharacter != nextMovieTitleFirstCharacter;
     }
 
     @Override
-    public void onBindItemViewHolder(final MovieViewHolder holder, final int position) {
-        final Capture movie = movieList.get(position);
+    public void onBindItemViewHolder(final CaptureViewHolder holder, final int position) {
+        final Capture movie = captureList.get(position);
 
-        holder.textMovieTitle.setText(movie.getTitle());
-//        holder.textMovieGenre.setText(movie.getGenre());
-//        holder.textMovieYear.setText(String.valueOf(movie.getYear()));
+        holder.textCaptureTitle.setText(movie.getTitle());
+//        holder.textCaptureGenre.setText(movie.getGenre());
+//        holder.textCaptureYear.setText(String.valueOf(movie.getYear()));
 
         holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClicked(movie));
     }
@@ -39,7 +39,7 @@ public class CaptureAdapterByDay extends BaseCaptureAdapter {
     public void onBindSubheaderViewHolder(SubheaderHolder subheaderHolder, int nextItemPosition) {
         super.onBindSubheaderViewHolder(subheaderHolder, nextItemPosition);
         final Context context = subheaderHolder.itemView.getContext();
-        final Capture nextMovie = movieList.get(nextItemPosition);
+        final Capture nextMovie = captureList.get(nextItemPosition);
         final int sectionSize = getSectionSize(getSectionIndex(subheaderHolder.getAdapterPosition()));
 
 //        final String title = nextMovie.getTitle().substring(0, 1);

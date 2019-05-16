@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.haotran.documentscanner.R;
@@ -16,14 +15,14 @@ import com.haotran.sectionedrecyclerview.SectionedRecyclerViewAdapter;
 import java.util.List;
 
 
-public abstract class BaseCaptureAdapter extends SectionedRecyclerViewAdapter<BaseCaptureAdapter.SubheaderHolder, BaseCaptureAdapter.MovieViewHolder> {
+public abstract class BaseCaptureAdapter extends SectionedRecyclerViewAdapter<BaseCaptureAdapter.SubheaderHolder, BaseCaptureAdapter.CaptureViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemClicked(Capture movie);
+        void onItemClicked(Capture capture);
         void onSubheaderClicked(int position);
     }
 
-    List<Capture> movieList;
+    List<Capture> captureList;
 
     OnItemClickListener onItemClickListener;
 
@@ -47,28 +46,28 @@ public abstract class BaseCaptureAdapter extends SectionedRecyclerViewAdapter<Ba
 
     }
 
-    static class MovieViewHolder extends RecyclerView.ViewHolder {
+    static class CaptureViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textMovieTitle;
-        TextView textMovieGenre;
-        TextView textMovieYear;
+        TextView textCaptureTitle;
+        TextView textCaptureGenre;
+        TextView textCaptureYear;
 
-        MovieViewHolder(View itemView) {
+        CaptureViewHolder(View itemView) {
             super(itemView);
-            this.textMovieTitle = (TextView) itemView.findViewById(R.id.movieTitle);
-            this.textMovieGenre = (TextView) itemView.findViewById(R.id.movieGenre);
-            this.textMovieYear = (TextView) itemView.findViewById(R.id.movieYear);
+            this.textCaptureTitle = (TextView) itemView.findViewById(R.id.movieTitle);
+            this.textCaptureGenre = (TextView) itemView.findViewById(R.id.movieGenre);
+            this.textCaptureYear = (TextView) itemView.findViewById(R.id.movieYear);
         }
     }
 
     BaseCaptureAdapter(List<Capture> itemList) {
         super();
-        this.movieList = itemList;
+        this.captureList = itemList;
     }
 
     @Override
-    public MovieViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
-        return new MovieViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_capture, parent, false));
+    public CaptureViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
+        return new CaptureViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_capture, parent, false));
     }
 
     @Override
@@ -94,7 +93,7 @@ public abstract class BaseCaptureAdapter extends SectionedRecyclerViewAdapter<Ba
 
     @Override
     public int getItemSize() {
-        return movieList.size();
+        return captureList.size();
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {

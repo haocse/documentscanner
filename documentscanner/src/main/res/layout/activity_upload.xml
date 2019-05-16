@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f7f8fb"
     tools:context=".activity.UploadActivity">
     <LinearLayout
         android:id="@+id/toolbar"
@@ -49,6 +50,8 @@
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:text="Notice"
+        android:textAlignment="center"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -57,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:text="Add your note"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -68,6 +72,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Debtor"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notice" />
 
@@ -78,16 +83,18 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Choose your debtor"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addNotice" />
 
     <Button
         android:id="@+id/upload"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded"
         android:text="UPLOAD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

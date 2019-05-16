@@ -218,7 +218,7 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
 //    }
 
     @Override
-    public void onItemClicked(Capture movie) {
+    public void onItemClicked(Capture capture) {
 //        int position = getArguments().getInt("POSITION");
 //        int index = 0;
 //        switch (position) {
@@ -248,7 +248,7 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
 //        mSectionedRecyclerAdapter.notifyItemRemovedAtPosition(index);
 
         Intent intent = new Intent(getActivity(), EditingActivity.class);
-        intent.putExtra(GROUP_NAME, movie.getTitle().split("_")[0]);
+        intent.putExtra(GROUP_NAME, capture.getTitle().split("_")[0]);
         startActivity(intent);
     }
 

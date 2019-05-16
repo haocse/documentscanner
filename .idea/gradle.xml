@@ -3,17 +3,17 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/liveedgedetection" />
+            <option value="$PROJECT_DIR$/documentscanner" />
+            <option value="$PROJECT_DIR$/documentscanner-release" />
             <option value="$PROJECT_DIR$/openCVLibrary340" />
+            <option value="$PROJECT_DIR$/opencv3_4_1" />
+            <option value="$PROJECT_DIR$/opencv3_4_4_contrib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

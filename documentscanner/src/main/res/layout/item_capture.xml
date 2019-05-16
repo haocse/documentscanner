@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="72dp"
-    android:background="?attr/selectableItemBackground"
+    android:background="#f3f3f3"
     android:focusable="true"
     android:clickable="true"
+
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/movieTitle"
-        android:maxLines="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
-        tools:text="Catch Me If You Can"
-        android:textAppearance="@style/TextAppearance.AppCompat" />
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Catch Me If You Can" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/movieGenre"
         tools:text="Biography"
+        android:visibility="gone"
         android:layout_below="@+id/movieTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -34,18 +41,73 @@
         android:layout_toRightOf="@+id/movieGenre"
         android:layout_toEndOf="@+id/movieGenre"
         android:id="@+id/textView2"
+        android:visibility="gone"
         android:layout_below="@+id/movieTitle"
         android:layout_alignBottom="@+id/movieGenre"
         tools:text=", "
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
     <TextView
+        android:id="@+id/movieYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2"
-        android:id="@+id/movieYear"
         android:layout_alignBottom="@+id/textView2"
-        tools:text="2002" />
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Aug 23, 2018 | 17:30" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/movieYear2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieYear"
+        android:text="1 page" />
+
+    <TextView
+        android:id="@+id/movieYear3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieYear"
+        android:text="Local Storage" />
+
+    <TextView
+        android:id="@+id/movieYear4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieYear"
+        android:text="Uploaded" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/movieTitle"
+        app:layout_constraintStart_toEndOf="@+id/movieTitle"
+        app:layout_constraintTop_toTopOf="@+id/movieTitle"
+        app:srcCompat="@drawable/ic_note" />
+
+</android.support.constraint.ConstraintLayout>
