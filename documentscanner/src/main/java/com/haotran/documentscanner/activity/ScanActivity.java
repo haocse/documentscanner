@@ -48,6 +48,8 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -126,14 +128,19 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         }
         checkCameraPermissions();
 
-        findViewById(R.id.capture).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        findViewById(R.id.capture).setOnClickListener(view -> {
 //                Toast.makeText(ScanActivity.this, "Hey...", Toast.LENGTH_SHORT).show();
-                // Capture image here.
-                mImageSurfaceView.capture();
+            // Capture image here.
+            mImageSurfaceView.capture();
 
-            }
+        });
+
+        findViewById(R.id.manual).setOnClickListener(v -> Toast.makeText(ScanActivity.this, "Coming soon!", Toast.LENGTH_SHORT).show());
+
+        findViewById(R.id.finish).setVisibility(GONE);
+        findViewById(R.id.textViewFinish).setVisibility(GONE);
+        findViewById(R.id.finish).setOnClickListener(v -> {
+            rawNext(mImageSurfaceView.getImageName());
         });
     }
 
@@ -325,6 +332,33 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
     @Override
     public void onYep(long name) {
         saveForTheNextCapture(name);
+        // update view... (bubble view)
+        int count = getNumberOfPhotos();
+        if (count != 0) {
+            ((TextView)findViewById(R.id.bubble)).setText(count + "");
+
+            // set View = Visible
+            findViewById(R.id.bubble).setVisibility(View.VISIBLE);
+            findViewById(R.id.bunch).setVisibility(View.VISIBLE);
+
+            findViewById(R.id.finish).setVisibility(View.VISIBLE);
+            findViewById(R.id.textViewFinish).setVisibility(View.VISIBLE);
+        } else {
+
+        }
+    }
+
+    private int getNumberOfPhotos() {
+        File dir = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getBaseContext());
+        File[] files = dir.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                String name = pathname.getName().split("_")[0];
+                String groupName = String.valueOf(mImageSurfaceView.getImageName());
+                return name.equals(groupName);
+            }
+        });
+        return files.length;
     }
 
     private synchronized void showProgressDialog(String message) {
@@ -380,6 +414,39 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
 
 //        ArrayList<String> al = new ArrayList<String>();
 //        al.add(fileName);
+    }
+
+    public void rawNext(long name) {
+        Map<Integer, PointF> points = polygonView.getPoints();
+        Bitmap croppedBitmap;
+
+        if (ScanUtils.isScanPointsValid(points)) {
+            Point point1 = new Point(points.get(0).x, points.get(0).y);
+            Point point2 = new Point(points.get(1).x, points.get(1).y);
+            Point point3 = new Point(points.get(2).x, points.get(2).y);
+            Point point4 = new Point(points.get(3).x, points.get(3).y);
+            croppedBitmap = ScanUtils.enhanceReceipt(copyBitmap, point1, point2, point3, point4);
+        } else {
+            croppedBitmap = copyBitmap;
+        }
+
+        String fileName = name + "_" + System.currentTimeMillis() + ".png";
+
+        ArrayList<String> al = new ArrayList<String>();
+        al.add(fileName);
+
+        setResult(Activity.RESULT_OK, new Intent().putStringArrayListExtra(ScanConstants.SCANNED_RESULT, al)); // path should be paths instead...
+
+        //bitmap.recycle();
+        System.gc();
+        finish();
+
+        // Start activity for editting
+        Intent intent = new Intent(this, EditingActivity.class);
+        // how to get timestamp here...
+        intent.putExtra(GROUP_NAME, String.valueOf(mImageSurfaceView.getImageName()));
+        startActivity(intent);
+
     }
 
     public void raw(long name) {
