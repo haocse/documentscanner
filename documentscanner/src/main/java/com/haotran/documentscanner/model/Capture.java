@@ -58,7 +58,7 @@ public class Capture {
         } else {
             Capture capture = (Capture) object;
             if (this.title.split("_")[0].equals(capture.getTitle().split("_")[0])) {
-                Log.d(">>>", "equalllll");
+//                Log.d(">>>", "equalllll");
                 result = true;
             }
         }

@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             } else if(resultCode == Activity.RESULT_CANCELED) {
-                finish();
+//                finish();
             }
         }
     }

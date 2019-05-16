@@ -36,6 +36,7 @@ public class CaptureActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
     ViewPager mViewPager;
     private Adapter adapter;
+    private TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,17 +45,27 @@ public class CaptureActivity extends AppCompatActivity {
         LinearLayout toobar = (LinearLayout) findViewById(R.id.toolbar);
         toobar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         ((AppCompatTextView)findViewById(R.id.tvTitleToolbar)).setText("Capture");
+        tabLayout = ((TabLayout)findViewById(R.id.tabLayout));
+
         setStatusBarColor(R.color.colorPrimaryDark);
 
         //ViewPager
         mViewPager = findViewById(R.id.viewPager);
         setupViewPager(mViewPager);
-        ((TabLayout)findViewById(R.id.tabLayout)).setupWithViewPager(mViewPager);
+
+        tabLayout.setupWithViewPager(mViewPager);
 
         findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startScan();
+            }
+        });
+
+        findViewById(R.id.ivBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -83,59 +94,60 @@ public class CaptureActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, color));
         }
+        tabLayout.setBackgroundColor(ContextCompat.getColor(this, color));
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE) {
-            if(resultCode == Activity.RESULT_OK) {
-                if(null != data && null != data.getExtras()) {
-                    ArrayList<String> fileNames = data.getExtras().getStringArrayList(ScanConstants.SCANNED_RESULT);
-                    String filePath = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getBaseContext()).getPath();
-                    Bitmap baseBitmap = ScanUtils.decodeBitmapFromFile(filePath, fileNames.get(0));
-//                    scannedImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//                    scannedImageView.setImageBitmap(baseBitmap);
-
-                    ByteArrayOutputStream imageByteArray = new ByteArrayOutputStream();
-                    baseBitmap.compress(Bitmap.CompressFormat.JPEG, 100, imageByteArray);
-                    byte[] imageData = imageByteArray.toByteArray();
-
-                    setDpi(imageData, 300);
-                    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-
-                    String filename = System.currentTimeMillis() + ".png";
-
-//                    String filename = "300dpi.png";
-//                    try {
-//                        File mPath = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getBaseContext());
-//                        File file = new File(mPath, filename);
-//                        FileOutputStream fileOutputStream = new FileOutputStream(file);
-//                        fileOutputStream.write(imageData);
-//                        fileOutputStream.close();
-//                    } catch (Exception e) {
-//                        Log.e(">>>", e.getMessage());
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == REQUEST_CODE) {
+//            if(resultCode == Activity.RESULT_OK) {
+//                if(null != data && null != data.getExtras()) {
+//                    ArrayList<String> fileNames = data.getExtras().getStringArrayList(ScanConstants.SCANNED_RESULT);
+//                    String filePath = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getBaseContext()).getPath();
+//                    Bitmap baseBitmap = ScanUtils.decodeBitmapFromFile(filePath, fileNames.get(0));
+////                    scannedImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+////                    scannedImageView.setImageBitmap(baseBitmap);
+//
+//                    ByteArrayOutputStream imageByteArray = new ByteArrayOutputStream();
+//                    baseBitmap.compress(Bitmap.CompressFormat.JPEG, 100, imageByteArray);
+//                    byte[] imageData = imageByteArray.toByteArray();
+//
+//                    setDpi(imageData, 300);
+////                    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+////                    String filename = System.currentTimeMillis() + ".png";
+//
+////                    String filename = "300dpi.png";
+////                    try {
+////                        File mPath = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getBaseContext());
+////                        File file = new File(mPath, filename);
+////                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+////                        fileOutputStream.write(imageData);
+////                        fileOutputStream.close();
+////                    } catch (Exception e) {
+////                        Log.e(">>>", e.getMessage());
+////                    }
+//
+//                    File mPath = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getBaseContext());
+//
+//
+//                    File[] list = mPath.listFiles(new FileFilter() {
+//                        @Override
+//                        public boolean accept(File file) {
+//                            return file.getName().endsWith(".png");
+//                        }
+//                    });
+//
+//                    Log.d(">>>", list.length + "");
+//                    for (int i = 0; i < list.length; i++) {
+//                        Log.d(">>>", list[i].getName());
 //                    }
-
-                    File mPath = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getBaseContext());
-
-                    File[] list = mPath.listFiles(new FileFilter() {
-                        @Override
-                        public boolean accept(File file) {
-                            return file.getName().endsWith(".png");
-                        }
-                    });
-
-                    Log.d(">>>", list.length + "");
-                    for (int i = 0; i < list.length; i++) {
-                        Log.d(">>>", list[i].getName());
-                    }
-                }
-            } else if(resultCode == Activity.RESULT_CANCELED) {
-                finish();
-            }
-        }
-    }
+//                }
+//            } else if(resultCode == Activity.RESULT_CANCELED) {
+////                finish();
+//            }
+//        }
+//    }
 
     private static void setDpi(byte[] imageData, int dpi) {
         imageData[13] = 1;

@@ -43,9 +43,27 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     def sectioned_recyclerview = "1.2.6"
     implementation "com.github.haocse:Sectioned-RecyclerView:$sectioned_recyclerview"
+
+    // Itext pdf library
+    implementation 'com.itextpdf:itextg:5.5.10'
+    implementation 'com.madgag.spongycastle:core:1.58.0.0'
+
+    //retrofit
+    def retrofit = '2.4.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:retrofit-mock:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    def okhttp3 = '3.11.0'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3"
+    def okhttp_logging_interceptor = '3.11.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:${okhttp_logging_interceptor}"
+
+
     def support_lib_version = '1.0.0'
     //    implementation "androidx.appcompat:appcompat:1.0.2"
 //    implementation "com.google.android.material:material:$support_lib_version"
+    implementation 'com.android.support:support-v4:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

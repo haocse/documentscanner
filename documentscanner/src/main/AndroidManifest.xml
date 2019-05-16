@@ -10,7 +10,9 @@
     <uses-feature android:name="android.hardware.camera" />
 
     <application android:supportsRtl="true">
-        <activity android:name=".activity.CaptureActivity"></activity>
+        <activity android:name=".activity.UploadActivity"></activity>
+        <activity android:name=".activity.EditingActivity" />
+        <activity android:name=".activity.CaptureActivity" />
         <activity
             android:name=".activity.ScanActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

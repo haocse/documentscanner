@@ -766,4 +766,8 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
     public void onAutoFocus(boolean b, Camera camera) {
 
     }
+
+    public long getImageName() {
+        return imageName;
+    }
 }

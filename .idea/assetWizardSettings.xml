@@ -14,8 +14,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_ic_camera_manual" />
-                            <entry key="sourceFile" value="D:\working\icons\download\drawable\ic-camera-manual.svg" />
+                            <entry key="height" value="72" />
+                            <entry key="outputName" value="ic_btn_add" />
+                            <entry key="overrideSize" value="true" />
+                            <entry key="sourceFile" value="D:\working\icons\download\drawable\btn-add.svg" />
+                            <entry key="width" value="72" />
                           </map>
                         </option>
                       </PersistentState>

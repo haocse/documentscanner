@@ -20,7 +20,7 @@ public class GridDividerDecoration extends RecyclerView.ItemDecoration {
 
     public GridDividerDecoration(Context context) {
         this.dividerPaint = new Paint();
-//        this.dividerPaint.setColor(ContextCompat.getColor(context, R.color.dividerColor));
+        this.dividerPaint.setColor(ContextCompat.getColor(context, android.R.color.transparent));
         this.dividerHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1f, context.getResources().getDisplayMetrics());
     }
 

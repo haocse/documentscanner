@@ -1,5 +1,6 @@
 package com.haotran.documentscanner.fragments;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haotran.documentscanner.R;
+import com.haotran.documentscanner.activity.EditingActivity;
 import com.haotran.documentscanner.activity.adapters.BaseCaptureAdapter;
 import com.haotran.documentscanner.activity.adapters.CaptureAdapterByDay;
 import com.haotran.documentscanner.constants.ScanConstants;
@@ -33,6 +35,7 @@ import java.util.List;
 
 public class CaptureResultFragment extends Fragment implements BaseCaptureAdapter.OnItemClickListener/*, NewCaptureDialogFragment.DialogListener*/ {
 
+    public static final String GROUP_NAME = "GROUP_NAME";
     private List<Capture> mMovieList;
     private List<Capture> mMovieListStorage;
     private List<Capture> mMovieListUploaded;
@@ -57,9 +60,6 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
         return inflater.inflate(R.layout.fragment_capture_t, container, false);
     }
 
-    public static boolean isYesterday(Date d) {
-        return DateUtils.isToday(d.getTime() + DateUtils.DAY_IN_MILLIS);
-    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -90,44 +90,62 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
         File dir = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, getActivity());
         File[] files = dir.listFiles(file -> file.getName().endsWith(".png"));
 
+        File dirUploaded = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.UPLOADED_IMAGE_DIR, getActivity());
+        File[] filesUploaded = dirUploaded.listFiles(file -> file.getName().endsWith(".png"));
+
         mMovieList = new ArrayList<>();
         mMovieListStorage = new ArrayList<>();
         mMovieListUploaded = new ArrayList<>();
 
         for(int i = 0; i < files.length; i++) {
-            // Process data => `day` -> TODAY, YESTERDAY, OLDER...
-
             String day = "OLDER";
-//            Log.d(">>>", names[i]);
             String name = files[i].getName().replaceAll(".png", "").split("_")[0];
             try {
                 if (DateUtils.isToday(Long.parseLong(name))) {
                     day = "TODAY";
-//                    Log.d(">>>", "today");
                 } else if (DateUtils.isToday(Long.parseLong(name) + DateUtils.DAY_IN_MILLIS)){
                     day = "YESTERDAY";
-//                    Log.d(">>>", "YESTERDAY");
                 } else {
-//                    Log.d(">>>", "What");
                 }
             } catch (Exception e) {
-                // nothing to do
-//                Log.d(">>>", "eeeeee");
-
             }
 
             Capture movie = new Capture(name, day, false);
-            if (mMovieList.contains(movie)) {
+            if (mMovieListStorage.contains(movie)) {
                 continue;
             }
 
-            mMovieList.add(movie);
-            if (false) {
-                mMovieListUploaded.add(movie);
-            } else {
-                mMovieListStorage.add(movie);
-            }
+            mMovieListStorage.add(movie);
         }
+
+        for(int i = 0; i < filesUploaded.length; i++) {
+            String day = "OLDER";
+            String name = filesUploaded[i].getName().replaceAll(".png", "").split("_")[0];
+            try {
+                if (DateUtils.isToday(Long.parseLong(name))) {
+                    day = "TODAY";
+                } else if (DateUtils.isToday(Long.parseLong(name) + DateUtils.DAY_IN_MILLIS)){
+                    day = "YESTERDAY";
+                } else {
+                }
+            } catch (Exception e) {
+            }
+
+            Capture movie = new Capture(name, day, false);
+            if (mMovieListUploaded.contains(movie)) {
+                continue;
+            }
+
+            mMovieListUploaded.add(movie);
+        }
+
+        mMovieList.addAll(mMovieListStorage);
+        mMovieList.addAll(mMovieListUploaded);
+//        if (false) {
+//            mMovieListUploaded.add(movie);
+//        } else {
+//            mMovieListStorage.add(movie);
+//        }
 
         int position = getArguments().getInt("POSITION");
 
@@ -201,9 +219,37 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
 
     @Override
     public void onItemClicked(Capture movie) {
-        final int index = mMovieList.indexOf(movie);
-        mMovieList.remove(movie);
-        mSectionedRecyclerAdapter.notifyItemRemovedAtPosition(index);
+//        int position = getArguments().getInt("POSITION");
+//        int index = 0;
+//        switch (position) {
+//            case 0:
+////                setAdapterByDay();
+//                index = mMovieList.indexOf(movie);
+//                break;
+//            case 1:
+////                setAdapterByDayStorage();
+//                index = mMovieListStorage.indexOf(movie);
+//                break;
+//            case 2:
+////                setAdapterByDayUploaded
+//                index = mMovieListUploaded.indexOf(movie);
+//                break;
+////            case 3:
+////                setAdapterWithGridLayout();
+////                break;
+////            case 4:
+////                setAdapterByDay();
+////                break;
+//        }
+
+
+//        mMovieList.remove(movie);
+
+//        mSectionedRecyclerAdapter.notifyItemRemovedAtPosition(index);
+
+        Intent intent = new Intent(getActivity(), EditingActivity.class);
+        intent.putExtra(GROUP_NAME, movie.getTitle().split("_")[0]);
+        startActivity(intent);
     }
 
     @Override

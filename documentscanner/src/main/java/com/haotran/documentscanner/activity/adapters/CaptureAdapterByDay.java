@@ -32,7 +32,7 @@ public class CaptureAdapterByDay extends BaseCaptureAdapter {
 //        holder.textMovieGenre.setText(movie.getGenre());
 //        holder.textMovieYear.setText(String.valueOf(movie.getYear()));
 
-//        holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClicked(movie));
+        holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClicked(movie));
     }
 
     @Override
