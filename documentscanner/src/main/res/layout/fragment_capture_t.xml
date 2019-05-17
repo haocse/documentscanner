@@ -10,4 +10,12 @@
         android:id="@+id/recyclerView"
         android:scrollbars="vertical"/>
 
+    <TextView
+        android:id="@+id/empty"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Currently empty"/>
+
 </FrameLayout>

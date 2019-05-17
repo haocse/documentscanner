@@ -156,12 +156,15 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
         switch (position) {
             case 0:
                 setAdapterByDay();
+                if (mMovieList.size() == 0) getView().findViewById(R.id.empty).setVisibility(View.VISIBLE);
                 break;
             case 1:
                 setAdapterByDayStorage();
+                if (mMovieListStorage.size() == 0) getView().findViewById(R.id.empty).setVisibility(View.VISIBLE);
                 break;
             case 2:
                 setAdapterByDayUploaded();
+                if (mMovieListUploaded.size() == 0) getView().findViewById(R.id.empty).setVisibility(View.VISIBLE);
                 break;
 //            case 3:
 //                setAdapterWithGridLayout();
