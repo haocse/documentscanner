@@ -65,6 +65,13 @@ public class UploadActivity extends AppCompatActivity implements CustomAdapter.H
             startReviewActivity();
         });
 
+        findViewById(R.id.addNotice).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(UploadActivity.this, "Coming soon.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         findViewById(R.id.addDebtor).setOnClickListener(v -> {
             // show pop-up for choosing debtor...
 //            Toast.makeText(UploadActivity.this, "popup...", Toast.LENGTH_SHORT).show();

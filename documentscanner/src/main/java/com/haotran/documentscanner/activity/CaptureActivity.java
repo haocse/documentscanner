@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.haotran.documentscanner.R;
 import com.haotran.documentscanner.constants.ScanConstants;
@@ -66,6 +67,13 @@ public class CaptureActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        findViewById(R.id.grid).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CaptureActivity.this, "Coming soon.", Toast.LENGTH_SHORT).show();
             }
         });
 

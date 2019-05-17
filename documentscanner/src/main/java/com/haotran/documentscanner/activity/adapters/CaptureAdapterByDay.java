@@ -1,15 +1,25 @@
 package com.haotran.documentscanner.activity.adapters;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
+import com.haotran.documentscanner.R;
+import com.haotran.documentscanner.constants.ScanConstants;
 import com.haotran.documentscanner.model.Capture;
+import com.haotran.documentscanner.util.ScanUtils;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CaptureAdapterByDay extends BaseCaptureAdapter {
-
-    public CaptureAdapterByDay(List<Capture> itemList) {
+    Context context;
+    public CaptureAdapterByDay(Context context, List<Capture> itemList) {
         super(itemList);
+        this.context = context;
     }
 
     @Override
@@ -26,13 +36,52 @@ public class CaptureAdapterByDay extends BaseCaptureAdapter {
 
     @Override
     public void onBindItemViewHolder(final CaptureViewHolder holder, final int position) {
-        final Capture movie = captureList.get(position);
+        final Capture capture = captureList.get(position);
 
-        holder.textCaptureTitle.setText(movie.getTitle());
-//        holder.textCaptureGenre.setText(movie.getGenre());
-//        holder.textCaptureYear.setText(String.valueOf(movie.getYear()));
+        holder.textCaptureTitle.setText(capture.getTitle());
 
-        holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClicked(movie));
+
+        // Convert title to correct time.
+
+        holder.timestamp.setText( convetTime(capture.getTitle()));
+        holder.location.setText(capture.isUploaded() ? "Uploaded" : "Local Storage");
+        if (capture.isUploaded()) {
+            holder.location.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
+        } else {
+
+        }
+        holder.page.setText(getPageSize(capture) + " page");
+
+        holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClicked(capture));
+    }
+
+    private int getPageSize(Capture capture) {
+        String title = capture.getTitle();
+        File dir;
+        if (capture.isUploaded()) {
+            dir = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.UPLOADED_IMAGE_DIR, context);
+        } else  {
+            dir = ScanUtils.getBaseDirectoryFromPathString(ScanConstants.RAW_IMAGE_DIR, context);
+        }
+
+        File[] files = dir.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.getName().split("_")[0].equals(title);
+            }
+        });
+        return files.length;
+    }
+
+    private String convetTime(String title) {
+        Log.d(">>>", title);
+
+//        String time = "Aug 23, 2018 | 17:30";
+        String time = "This is time...";
+        DateFormat f = new SimpleDateFormat("MMM dd, yyyy | HH:mm");
+//        System.out.println();
+        time = f.format(Long.valueOf(title));
+        return time;
     }
 
     @Override

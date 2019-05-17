@@ -10,9 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.haotran.documentscanner.R;
 import com.haotran.documentscanner.constants.ScanConstants;
@@ -58,6 +61,32 @@ public class EditingActivity extends AppCompatActivity {
                 finish();
             }
         });
+        
+        findViewById(R.id.viewNotice).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(EditingActivity.this, "Coming soon.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        findViewById(R.id.crop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(EditingActivity.this, "Coming soon.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        findViewById(R.id.rotate).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(EditingActivity.this, "Coming soon.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(EditingActivity.this, "Coming soon.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void setupViewPager(ViewPager viewPager, String groupName) {
@@ -88,13 +117,34 @@ public class EditingActivity extends AppCompatActivity {
         for (int i = 0; i < filesUploaded.length; i++) {
             this.adapter.addFragment(new EditingFragment(), filesUploaded[i].getName(), length, ScanConstants.UPLOADED_IMAGE_DIR);
         }
-        ((TextView)findViewById(R.id.page)).setText(files.length + "");
+
+//        int size = getArguments().getInt("SIZE");
+        ((TextView)findViewById(R.id.page)).setText(1 + "/" + length);
 //        this.adapter.addFragment(new EditingFragment(), "1"); // add position 1
 //        this.adapter.addFragment(new EditingFragment(), "2");
 //        this.adapter.addFragment(new EditingFragment(), "3");
 //        this.adapter.addFragment(new CaptureResultFragment(), "Grid");
 //        this.adapter.addFragment(new CaptureResultFragment(), "By Day");
         viewPager.setAdapter(this.adapter);
+
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+//                Log.d(">>>", "" + i + " " + v + " " + i1);
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                Log.d(">>>", "onPageSelected: " + i);
+                ((TextView)findViewById(R.id.page)).setText( (i+1) + "/" + length);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     private static class Adapter extends FragmentPagerAdapter {

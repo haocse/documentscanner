@@ -14,11 +14,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="32" />
-                            <entry key="outputName" value="ic_ic_camera_auto" />
+                            <entry key="height" value="18" />
+                            <entry key="outputName" value="ic_row_unactive" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="D:\working\icons\download\drawable\ic-camera-auto.svg" />
-                            <entry key="width" value="32" />
+                            <entry key="sourceFile" value="D:\working\icons\download\drawable\ic_row_unactive.svg" />
+                            <entry key="width" value="18" />
                           </map>
                         </option>
                       </PersistentState>

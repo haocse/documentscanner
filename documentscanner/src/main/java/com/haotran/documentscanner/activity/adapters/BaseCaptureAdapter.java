@@ -49,14 +49,18 @@ public abstract class BaseCaptureAdapter extends SectionedRecyclerViewAdapter<Ba
     static class CaptureViewHolder extends RecyclerView.ViewHolder {
 
         TextView textCaptureTitle;
-        TextView textCaptureGenre;
-        TextView textCaptureYear;
+        TextView textCaptureTime;
+        TextView location;
+        TextView timestamp;
+        TextView page;
 
         CaptureViewHolder(View itemView) {
             super(itemView);
-            this.textCaptureTitle = (TextView) itemView.findViewById(R.id.movieTitle);
-            this.textCaptureGenre = (TextView) itemView.findViewById(R.id.movieGenre);
-            this.textCaptureYear = (TextView) itemView.findViewById(R.id.movieYear);
+            this.textCaptureTitle = (TextView) itemView.findViewById(R.id.captureTitle);
+            this.textCaptureTime = (TextView) itemView.findViewById(R.id.timestamp);
+            this.location = (TextView) itemView.findViewById(R.id.localtion);
+            this.timestamp = (TextView) itemView.findViewById(R.id.timestamp);
+            this.page = (TextView) itemView.findViewById(R.id.page);
         }
     }
 

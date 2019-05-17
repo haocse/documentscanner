@@ -135,7 +135,7 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
             } catch (Exception e) {
             }
 
-            Capture movie = new Capture(name, day, false);
+            Capture movie = new Capture(name, day, true);
             if (mMovieListUploaded.contains(movie)) {
                 continue;
             }
@@ -179,21 +179,21 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
         this.movieComparator = (o1, o2) -> o1.getTitle().compareTo(o2.getTitle());
         Collections.sort(mMovieList, Collections.reverseOrder(movieComparator));
 //        Collections.sort(mMovieList, movieComparator);
-        mSectionedRecyclerAdapter = new CaptureAdapterByDay(mMovieList);
+        mSectionedRecyclerAdapter = new CaptureAdapterByDay(getActivity(), mMovieList);
     }
 
     private void setAdapterByDayStorage() {
         this.movieComparator = (o1, o2) -> o1.getTitle().compareTo(o2.getTitle());
         Collections.sort(mMovieListStorage, Collections.reverseOrder(movieComparator));
 //        Collections.sort(mMovieList, movieComparator);
-        mSectionedRecyclerAdapter = new CaptureAdapterByDay(mMovieListStorage);
+        mSectionedRecyclerAdapter = new CaptureAdapterByDay(getActivity(), mMovieListStorage);
     }
 
     private void setAdapterByDayUploaded() {
         this.movieComparator = (o1, o2) -> o1.getTitle().compareTo(o2.getTitle());
         Collections.sort(mMovieListUploaded, Collections.reverseOrder(movieComparator));
 //        Collections.sort(mMovieList, movieComparator);
-        mSectionedRecyclerAdapter = new CaptureAdapterByDay(mMovieListUploaded);
+        mSectionedRecyclerAdapter = new CaptureAdapterByDay(getActivity(), mMovieListUploaded);
     }
 
 //    private void setAdapterByName() {
