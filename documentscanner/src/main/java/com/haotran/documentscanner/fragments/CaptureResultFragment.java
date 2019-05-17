@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -68,7 +69,10 @@ public class CaptureResultFragment extends Fragment implements BaseCaptureAdapte
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         gridDividerDecoration = new GridDividerDecoration(getContext());
-        recyclerView.addItemDecoration(gridDividerDecoration);
+
+//        recyclerView.addItemDecoration(gridDividerDecoration);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL));
 
 //        Resources resources = getResources();
 //        String[] names = resources.getStringArray(R.array.names);

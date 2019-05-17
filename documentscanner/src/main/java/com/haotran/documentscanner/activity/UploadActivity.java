@@ -111,11 +111,20 @@ public class UploadActivity extends AppCompatActivity implements CustomAdapter.H
             wheelView.setWheelData(getList());
             wheelView.setSelection(1);
 
+            wheelView.setOnWheelItemSelectedListener(new WheelView.OnWheelItemSelectedListener() {
+                @Override
+                public void onItemSelected(int position, Object o) {
+                    Log.d(">>", "Selected!");
+                }
+            });
+
             dialogView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int currentPosition = wheelView.getCurrentPosition();
                     Log.d(">>>", currentPosition + "");
+                    //set value here
+                    ((TextView)findViewById(R.id.addDebtor)).setText(getElementByIndex(currentPosition));
                     alertDialog.dismiss();
                 }
             });

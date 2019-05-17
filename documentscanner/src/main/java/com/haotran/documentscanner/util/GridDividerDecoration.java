@@ -20,7 +20,7 @@ public class GridDividerDecoration extends RecyclerView.ItemDecoration {
 
     public GridDividerDecoration(Context context) {
         this.dividerPaint = new Paint();
-        this.dividerPaint.setColor(ContextCompat.getColor(context, android.R.color.transparent));
+        this.dividerPaint.setColor(ContextCompat.getColor(context, android.R.color.black));
         this.dividerHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1f, context.getResources().getDisplayMetrics());
     }
 
@@ -38,6 +38,7 @@ public class GridDividerDecoration extends RecyclerView.ItemDecoration {
             if (adapterPosition != RecyclerView.NO_POSITION && i != 0 && adapter.isSubheaderAtPosition(adapterPosition)) {
                 c.drawRect(child.getLeft(), child.getTop(), child.getRight(), child.getTop() + dividerHeight, dividerPaint);
             }
+//            c.drawRect(child.getLeft(), child.getTop(), child.getRight(), child.getTop() + dividerHeight, dividerPaint);
 
         }
 
