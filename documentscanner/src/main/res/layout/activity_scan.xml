@@ -5,13 +5,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-
     <FrameLayout
-
         android:id="@+id/container_scan"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="1dp"
         tools:context="com.haotran.documentscanner.activity.ScanActivity">
 
         <FrameLayout
@@ -92,13 +92,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:paddingBottom="4dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:visibility="invisible"
+                android:paddingBottom="4dp"
                 android:text="@string/finding_rect"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_18" />
+                android:textSize="@dimen/text_size_18"
+                android:visibility="invisible" />
         </LinearLayout>
     </FrameLayout>
 

@@ -721,12 +721,17 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
             camera.autoFocus(new Camera.AutoFocusCallback() {
                 @Override
                 public void onAutoFocus(boolean success, Camera camera) {
-                    camera.cancelAutoFocus();
-                    Camera.Parameters params = camera.getParameters();
-                    if (!params.getFocusMode().equals(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-                        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-                        camera.setParameters(params);
+                    try {
+                        camera.cancelAutoFocus();
+                        Camera.Parameters params = camera.getParameters();
+                        if (!params.getFocusMode().equals(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+                            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                            camera.setParameters(params);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+
                 }
             });
             return true;

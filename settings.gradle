@@ -1,4 +1,6 @@
-include ':app', ':documentscanner', ':documentscanner-release'
+include ':app', ':documentscanner'
 include ':openCVLibrary340'
 include ':opencv3_4_4_contrib'
 include ':opencv3_4_1'
+include ':capture'
+project(':capture').projectDir = new File('D:\\working\\cisbox_invoice_app_android\\com.cisbox.core\\capture')

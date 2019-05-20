@@ -10,9 +10,18 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        production {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,6 +39,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+//    flavorDimensions "default"
+//    productFlavors {
+//        capture {
+//            dimension "default"
+//        }
+//
+//        none {
+//            dimension "default"
+//        }
+//    }
+
 }
 
 dependencies {
@@ -47,7 +68,10 @@ dependencies {
 //    implementation project(':documentscanner-release')
 //    implementation(name:'documentscanner-release', ext:'aar')
 //    implementation(name:'com.haotran.documentscanner', ext:'aar')
-    implementation project(':documentscanner')
+//    implementation project(':documentscanner')
+
+
+    implementation project(':capture')
 //    implementation 'com.haotran.documentscanner:latest@aar'
 
 //    implementation 'com.github.HaoCSE:documentscanner:1.0.1'
