@@ -1,6 +1,9 @@
 # documentscanner (not finished yet)
 Working on Edge Detection without using Canny
 
+# Idea
+Use random forest to detect edges then i try to use houghlines to get the best... 
+
 # How to use
 Top-level gradle:
     <code>allprojects {
