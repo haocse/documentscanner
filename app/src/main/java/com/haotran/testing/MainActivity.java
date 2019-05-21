@@ -1,22 +1,13 @@
 package com.haotran.testing;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.haotran.documentscanner.R;
 import com.haotran.documentscanner.activity.CaptureActivity;
-import com.haotran.documentscanner.constants.ScanConstants;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
