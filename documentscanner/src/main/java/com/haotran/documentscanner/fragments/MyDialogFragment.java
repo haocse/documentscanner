@@ -9,7 +9,7 @@
 //import android.view.ViewGroup;
 //
 //import com.haotran.documentscanner.R;
-//import com.haotran.documentscanner.activity.adapters.CustomAdapter;
+//import com.haotran.capture.activity.adapters.CustomAdapter;
 //
 //public class MyDialogFragment extends DialogFragment {
 //    private RecyclerView mRecyclerView;

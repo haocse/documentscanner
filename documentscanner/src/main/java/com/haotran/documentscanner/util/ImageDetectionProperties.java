@@ -18,6 +18,7 @@ public class ImageDetectionProperties {
     private final double previewArea;
     private final double resultArea;
 
+
     public ImageDetectionProperties(double previewWidth, double previewHeight, double resultWidth,
                                     double resultHeight, double previewArea, double resultArea,
                                     Point topLeftPoint, Point bottomLeftPoint, Point bottomRightPoint,
