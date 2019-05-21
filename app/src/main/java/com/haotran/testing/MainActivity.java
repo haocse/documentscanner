@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.haotran.documentscanner.R;
 import com.haotran.documentscanner.activity.ScanActivity;
 //import com.haotran.capture.activity.CaptureActivity;
+import com.haotran.documentscanner.
 
 public class MainActivity extends AppCompatActivity {
 
