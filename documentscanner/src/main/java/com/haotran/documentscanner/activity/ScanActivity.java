@@ -60,7 +60,6 @@ import java.util.Map;
 import java.util.Stack;
 
 import static android.view.View.GONE;
-import static com.haotran.documentscanner.fragments.CaptureResultFragment.GROUP_NAME;
 
 /**
  * This class initiates camera and detects edges on live view
@@ -442,10 +441,9 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         finish();
 
         // Start activity for editting
-        Intent intent = new Intent(this, EditingActivity.class);
-        // how to get timestamp here...
-        intent.putExtra(GROUP_NAME, String.valueOf(mImageSurfaceView.getImageName()));
-        startActivity(intent);
+//        Intent intent = new Intent(this, EditingActivity.class);
+//        intent.putExtra(GROUP_NAME, String.valueOf(mImageSurfaceView.getImageName()));
+//        startActivity(intent);
 
     }
 
@@ -478,10 +476,9 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         finish();
 
         // Start activity for editting
-        Intent intent = new Intent(this, EditingActivity.class);
-        // how to get timestamp here...
-        intent.putExtra(GROUP_NAME, String.valueOf(mImageSurfaceView.getImageName()));
-        startActivity(intent);
+//        Intent intent = new Intent(this, EditingActivity.class);
+//        intent.putExtra(GROUP_NAME, String.valueOf(mImageSurfaceView.getImageName()));
+//        startActivity(intent);
 
     }
 

@@ -11,14 +11,6 @@
 
     <application android:supportsRtl="true">
         <activity
-            android:name=".activity.UploadActivity"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name=".activity.EditingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activity.CaptureActivity"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".activity.ScanActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait"/>
