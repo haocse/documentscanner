@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.haotran.documentscanner.R;
-import com.haotran.documentscanner.activity.ScanActivity;
+import com.haotran.capture.activity.CaptureActivity;
+import com.haotran.demo.R;
 //import com.haotran.capture.activity.CaptureActivity;
-import com.haotran.documentscanner.
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startCapture() {
-        Intent intent = new Intent(this, ScanActivity.class);
+        Intent intent = new Intent(this, CaptureActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
 
 

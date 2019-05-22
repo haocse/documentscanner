@@ -71,8 +71,8 @@ dependencies {
 //    implementation project(':documentscanner')
 
 
-    //implementation project(':capture')
-    implementation "com.github.haocse.documentscanner:documentscanner:1.0.18"
+    implementation project(':capture')
+    //implementation "com.github.haocse.documentscanner:documentscanner:1.0.19"
 //    implementation 'com.haotran.documentscanner:latest@aar'
 
 //    implementation 'com.github.HaoCSE:documentscanner:1.0.1'

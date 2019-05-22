@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/GitHub-documentscanner.iml" filepath="$PROJECT_DIR$/GitHub-documentscanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/LiveEdgeDetection-master.iml" filepath="$PROJECT_DIR$/LiveEdgeDetection-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:/working/cisbox_invoice_app_android/com.cisbox.core/capture/capture.iml" filepath="D:/working/cisbox_invoice_app_android/com.cisbox.core/capture/capture.iml" />
       <module fileurl="file://$PROJECT_DIR$/documentscanner/documentscanner-documentscanner.iml" filepath="$PROJECT_DIR$/documentscanner/documentscanner-documentscanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/openCVLibrary340/openCVLibrary340.iml" filepath="$PROJECT_DIR$/openCVLibrary340/openCVLibrary340.iml" />
       <module fileurl="file://$PROJECT_DIR$/opencv3_4_1/opencv3_4_1.iml" filepath="$PROJECT_DIR$/opencv3_4_1/opencv3_4_1.iml" />
