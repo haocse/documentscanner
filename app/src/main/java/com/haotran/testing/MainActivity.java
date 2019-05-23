@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        scannedImageView = findViewById(R.id.scanned_image);
+//        scannedImageView = findViewById(R.id.scanned_image);
 
 //        startScan();
         startCapture();
