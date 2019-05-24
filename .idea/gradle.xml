@@ -13,8 +13,8 @@
             <option value="$PROJECT_DIR$/openCVLibrary340" />
             <option value="$PROJECT_DIR$/opencv3_4_1" />
             <option value="$PROJECT_DIR$/opencv3_4_4_contrib" />
-            <option value="D:/working/cisbox_invoice_app_android/com.cisbox.core/capture" />
-            <option value="D:/working/cisbox_invoice_app_android/com.cisbox.core/core" />
+            <option value="$USER_HOME$/working/cisbox_invoice_app_android/com.cisbox.core/capture" />
+            <option value="$USER_HOME$/working/cisbox_invoice_app_android/com.cisbox.core/core" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
