@@ -332,9 +332,12 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
     public void onYep(long name) {
         saveForTheNextCapture(name);
         // update view... (bubble view)
+//        Toast.makeText(this, "onYep...", Toast.LENGTH_SHORT).show();
         int count = getNumberOfPhotos();
         if (count != 0) {
             ((TextView)findViewById(R.id.bubble)).setText(count + "");
+
+//            ((TextView)findViewById(R.id.bubble)).setBackground(getResources().getDrawable(R.drawable.circle_buble));
 
             // set View = Visible
             findViewById(R.id.bubble).setVisibility(View.VISIBLE);

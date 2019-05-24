@@ -288,7 +288,7 @@ public class PolygonView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         imageView.setLayoutParams(layoutParams);
-        imageView.setImageResource(R.drawable.circle);
+        imageView.setImageResource(R.drawable.circle_buble);
         imageView.setX(x);
         imageView.setY(y);
         imageView.setOnTouchListener(new TouchListenerImpl());
@@ -299,7 +299,7 @@ public class PolygonView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         imageView.setLayoutParams(layoutParams);
-        imageView.setImageResource(R.drawable.circle);
+        imageView.setImageResource(R.drawable.circle_buble);
         imageView.setX(x);
         imageView.setY(y);
 //        imageView.setOnTouchListener(new MidPointTouchListenerImpl());

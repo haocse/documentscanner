@@ -191,10 +191,9 @@
         android:translationX="-8dp"
         android:translationY="2dp"
         android:visibility="gone"
-        android:background="@drawable/circle"
+        android:background="@drawable/circle_buble"
         android:scaleType="fitXY"
         android:text="1"
-
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/bunch"
         app:layout_constraintStart_toEndOf="@+id/bunch"
