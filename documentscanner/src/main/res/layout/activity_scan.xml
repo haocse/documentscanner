@@ -120,21 +120,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/capture" />
 
-    <TextView
-        android:id="@+id/bubble"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:translationX="-8dp"
-        android:translationY="2dp"
-        android:visibility="gone"
-        android:background="@drawable/circle"
-        android:scaleType="fitXY"
-        android:text="1"
 
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/bunch"
-        app:layout_constraintStart_toEndOf="@+id/bunch"
-        app:layout_constraintTop_toTopOf="@+id/capture" />
 
     <ImageView
         android:id="@+id/capture"
@@ -197,6 +183,22 @@
         app:layout_constraintEnd_toStartOf="@+id/manual"
         app:layout_constraintTop_toTopOf="@+id/manual"
         app:srcCompat="@drawable/ic_ic_camera_finish" />
+
+    <TextView
+        android:id="@+id/bubble"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:translationX="-8dp"
+        android:translationY="2dp"
+        android:visibility="gone"
+        android:background="@drawable/circle"
+        android:scaleType="fitXY"
+        android:text="1"
+
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/bunch"
+        app:layout_constraintStart_toEndOf="@+id/bunch"
+        app:layout_constraintTop_toTopOf="@+id/capture" />
 
 </android.support.constraint.ConstraintLayout>
 
