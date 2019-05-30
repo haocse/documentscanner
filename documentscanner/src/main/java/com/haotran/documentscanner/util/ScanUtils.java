@@ -446,7 +446,7 @@ public class ScanUtils {
         try {
             FileOutputStream mFileOutputStream = new FileOutputStream(mPath);
             //Compress method used on the Bitmap object to write  image to output stream
-            bitmap.compress(Bitmap.CompressFormat.JPEG, mQuality, mFileOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, mQuality, mFileOutputStream);
             mFileOutputStream.close();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage(), e);
