@@ -5,8 +5,8 @@ include ':opencv3_4_1'
 include ':capture'
 include ':core'
 
-//project(':core').projectDir = new File('D:\\working\\cisbox_invoice_app_android\\com.cisbox.core\\core')
-//project(':capture').projectDir = new File('D:\\working\\cisbox_invoice_app_android\\com.cisbox.core\\capture')
+project(':core').projectDir = new File('D:\\working\\cisbox_invoice_app_android\\com.cisbox.core\\core')
+project(':capture').projectDir = new File('D:\\working\\cisbox_invoice_app_android\\com.cisbox.core\\capture')
 
-project(':core').projectDir = new File('/Users/haotran/working/cisbox_invoice_app_android/com.cisbox.core/core')
-project(':capture').projectDir = new File('/Users/haotran/working/cisbox_invoice_app_android/com.cisbox.core/capture')
+//project(':core').projectDir = new File('/Users/haotran/working/cisbox_invoice_app_android/com.cisbox.core/core')
+//project(':capture').projectDir = new File('/Users/haotran/working/cisbox_invoice_app_android/com.cisbox.core/capture')

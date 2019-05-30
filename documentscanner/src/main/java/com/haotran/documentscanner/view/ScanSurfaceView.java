@@ -23,8 +23,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.haotran.documentscanner.R;
 import com.haotran.documentscanner.activity.ScanActivity;
 import com.haotran.documentscanner.constants.ScanConstants;
 import com.haotran.documentscanner.enums.ScanHint;
@@ -573,7 +575,7 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
                 }
             }, 1000);
 
-            new AlertDialog.Builder(context)
+            AlertDialog.Builder builder = new AlertDialog.Builder(context)
                     .setTitle("Add next page")
                     .setMessage("Do you want to add next page?")
 
@@ -593,9 +595,16 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
                         public void onClick(DialogInterface dialogInterface, int i) {
                             iScanner.onNope(imageName);
                         }
-                    })
+                    });
 //                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+//                    .show();
+
+            AlertDialog alert = builder.create();
+            alert.show();
+            Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+            nbutton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+            pbutton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
 
         }
     };

@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GitHub-documentscanner.iml" filepath="$PROJECT_DIR$/GitHub-documentscanner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LiveEdgeDetection-master.iml" filepath="$PROJECT_DIR$/LiveEdgeDetection-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://D:/working/cisbox_invoice_app_android/com.cisbox.core/capture/capture.iml" filepath="D:/working/cisbox_invoice_app_android/com.cisbox.core/capture/capture.iml" />
-      <module fileurl="file://$USER_HOME$/working/cisbox_invoice_app_android/com.cisbox.core/capture/com.cisbox.core-capture.iml" filepath="$USER_HOME$/working/cisbox_invoice_app_android/com.cisbox.core/capture/com.cisbox.core-capture.iml" />
-      <module fileurl="file://$USER_HOME$/working/cisbox_invoice_app_android/com.cisbox.core/core/com.cisbox.core-core.iml" filepath="$USER_HOME$/working/cisbox_invoice_app_android/com.cisbox.core/core/com.cisbox.core-core.iml" />
       <module fileurl="file://D:/working/cisbox_invoice_app_android/com.cisbox.core/core/core.iml" filepath="D:/working/cisbox_invoice_app_android/com.cisbox.core/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/documentscanner.iml" filepath="$PROJECT_DIR$/documentscanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/documentscanner/documentscanner-documentscanner.iml" filepath="$PROJECT_DIR$/documentscanner/documentscanner-documentscanner.iml" />
