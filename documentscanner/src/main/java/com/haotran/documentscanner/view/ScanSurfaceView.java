@@ -262,8 +262,8 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
                 try {
 
                     Camera.Size pictureSize = camera.getParameters().getPreviewSize();
-                    int width = pictureSize.width;
-                    int height = pictureSize.height;
+//                    int width = pictureSize.width;
+//                    int height = pictureSize.height;
 
                     Log.d(TAG, "onPreviewFrame - received image " + pictureSize.width + "x" + pictureSize.height);
                     Mat yuv = new Mat(new Size(pictureSize.width, pictureSize.height * 1.5), CV_8UC1);
@@ -284,9 +284,6 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
 //                    SaveImage(mat);
 
                     yuv.release();
-
-
-
 
 //                    YuvImage yuv = new YuvImage(data,camera.getParameters().getPreviewFormat(), width, height, null);
 //                    ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -568,12 +565,12 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
             bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
 
             iScanner.onPictureClicked(bitmap);
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    isCapturing = false;
-                }
-            }, 1000);
+//            postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    isCapturing = false;
+//                }
+//            }, 1000);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context)
                     .setTitle("Add next page")

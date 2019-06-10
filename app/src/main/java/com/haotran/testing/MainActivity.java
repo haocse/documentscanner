@@ -25,20 +25,18 @@ public class MainActivity extends AppCompatActivity {
 
 //        startScan();
         startCapture();
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                startScan();
-//                startCapture();
-            }
-        });
+//        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                startScan();
+////                startCapture();
+//            }
+//        });
     }
 
     private void startCapture() {
         Intent intent = new Intent(this, CaptureActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
-
-
     }
 
 //    private void startScan() {
